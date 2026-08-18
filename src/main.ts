@@ -47,7 +47,7 @@ app.innerHTML = `
     <section class="todo-section" aria-labelledby="todo-title">
       <div class="intro">
         <p class="eyebrow">Your daily focus</p>
-        <h1 id="todo-title">A little less<br><em>to do.</em></h1>
+        <h1 id="todo-title">Make space for<br><em>what matters.</em></h1>
         <p class="subtitle">Keep the important things close, and let the rest wait.</p>
       </div>
       <form class="todo-form" id="todo-form">
