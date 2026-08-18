@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600&display=swap');
 
 :root {
-  --background: #f3f5f4;
-  --surface: #ffffff;
-  --text: #1f2a2a;
-  --muted: #5e6b69;
-  --accent: #176b63;
-  --accent-hover: #0f524c;
-  --border: #d8e1de;
+  --background: #f6f4ef;
+  --surface: #fffefa;
+  --surface-raised: #ffffff;
+  --text: #1b2430;
+  --muted: #66717d;
+  --accent: #e25c4b;
+  --accent-hover: #c94738;
+  --secondary: #3566d4;
+  --border: #e2ded5;
+  --shadow: 0 18px 45px rgb(38 43 52 / 8%);
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
   background: var(--background);
@@ -23,17 +26,22 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: var(--background);
+  background-image: radial-gradient(circle at 10% 0%, rgb(226 92 75 / 8%), transparent 28rem), radial-gradient(circle at 100% 75%, rgb(53 102 212 / 7%), transparent 30rem);
   transition: background-color 180ms ease, color 180ms ease;
 }
 
 body.dark-mode {
-  --background: #172321;
-  --surface: #21322f;
-  --text: #edf5f2;
-  --muted: #b4c6c1;
-  --accent: #7bd3b9;
-  --accent-hover: #a0e5d0;
-  --border: #3b544e;
+  --background: #151b27;
+  --surface: #202938;
+  --surface-raised: #263244;
+  --text: #f5f2eb;
+  --muted: #a9b3c2;
+  --accent: #ff806b;
+  --accent-hover: #ff9a87;
+  --secondary: #86a7ff;
+  --border: #354154;
+  --shadow: 0 18px 45px rgb(0 0 0 / 22%);
+  background-image: radial-gradient(circle at 10% 0%, rgb(255 128 107 / 10%), transparent 28rem), radial-gradient(circle at 100% 75%, rgb(134 167 255 / 9%), transparent 30rem);
 }
 
 #app { min-height: 100vh; }
@@ -49,42 +57,97 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .brand {
   color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.content-section {
-  display: grid;
-  place-items: center;
-  min-height: calc(100vh - 5.5rem);
-  padding: 4rem 1rem;
-  text-align: center;
+.theme-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  background: var(--surface);
+  font-size: 1.2rem;
 }
 
-.welcome-content { max-width: 650px; }
+.theme-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.todo-section {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 4.25rem 0 5rem;
+}
+
+.intro { max-width: 560px; }
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
 h1 {
-  margin: 0 0 1rem;
+  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 1;
+  font-size: clamp(3.25rem, 8vw, 6.2rem);
+  line-height: 0.95;
   letter-spacing: 0;
 }
 
-p { color: var(--muted); font-size: 1.1rem; line-height: 1.7; }
+h1 em { color: var(--accent); font-style: normal; }
+
+.subtitle {
+  max-width: 400px;
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.todo-form {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 3rem;
+  padding: 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow);
+}
+
+input {
+  min-width: 0;
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 7px;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+}
+
+input:focus-visible { outline: 3px solid color-mix(in srgb, var(--secondary) 35%, transparent); outline-offset: 2px; }
 
 button {
-  margin-top: 1.5rem;
   padding: 0.75rem 1.15rem;
   border: 1px solid var(--accent);
-  border-radius: 6px;
+  border-radius: 7px;
   color: var(--background);
   background: var(--accent);
   cursor: pointer;
@@ -100,3 +163,94 @@ button:hover {
 }
 
 button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.todo-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.filters { display: flex; gap: 0.25rem; }
+
+.filter-button {
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border-color: transparent;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.filter-button:hover,
+.filter-button.is-selected {
+  border-color: var(--border);
+  color: var(--text);
+  background: var(--surface);
+  transform: none;
+}
+
+.todo-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 4rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-raised);
+  box-shadow: 0 4px 15px rgb(38 43 52 / 4%);
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.todo-item:hover { border-color: color-mix(in srgb, var(--secondary) 45%, var(--border)); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.todo-item span { flex: 1; }
+
+.todo-item.is-complete span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.check-button,
+.delete-button {
+  flex: 0 0 auto;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--surface);
+  background: transparent;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.check-button { color: var(--surface); }
+.is-complete .check-button { border-color: var(--accent); background: var(--accent); }
+.delete-button { border-color: transparent; color: var(--muted); background: transparent; font-size: 1.35rem; }
+.delete-button:hover { color: #b34b45; background: transparent; transform: none; }
+.empty-state { padding: 2rem 0; color: var(--muted); text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 520px) {
+  .todo-section { padding-top: 3.5rem; }
+  .todo-form { flex-direction: column; }
+  .todo-form button { width: 100%; }
+  .todo-toolbar { align-items: flex-start; flex-direction: column; gap: 0.5rem; }
+}
